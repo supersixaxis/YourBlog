@@ -1,0 +1,59 @@
+Projet : Blog
+
+01 - choisir un template (ou tout la main), préparer les includes.
+
+02 - Page inscription
+    Faire un formulaire avec les champs suivants : pseudo, email, mdp, adresse, cp, ville, avatar
+    Faire les controles
+    Conserver les informations, le mdp doit etre hashé
+    Unicité sur le pseudo et sur le mail
+    Attention au format de l'avatar 
+    Rajoutez une information statut (qui ne vient pas du form) valeurs : ROLE_ADMIN ROLE_USER
+
+03 - Page connexion
+    Faire un formulaire de connexion
+    Faire en sorte que l'utilisateur puisse se connecter avec son pseudo ou son email 
+    Lors de la connexion gérez la session et si connexion ok, on envoie vers profil.php 
+
+04 - Page profil.php 
+    Dans cette page on affiche les informations utilisateur (pas le mdp)
+
+05 - Mettre en place un menu    
+    Si l'utilisateur est connecté il doit y avoir les liens : "profil" et "se déconnecter"
+    Si l'utilisateur n'est pas connecté au lieu des liens précédents, on aura : "connexion" et "inscription"
+    Si l'utilisateur a le statut ROLE_ADMIN, il faudra aussi un lien "Gestion" qui nous permettra d'accéder au back office
+
+06 - Restriction d'accès 
+    Si l'utilisateur est connecté, on en le laisse pas accéder aux pages connexion et inscription
+    Si l'utilisateur n'est pas connecté, il ne doit pas avoir accès à la page profil.php
+
+07 - admin/gestion.php 
+    Restriction d'accès : uniquement les utilisateur avec le statut ROLE_ADMIN doivent avoir accès à cette page, les autres statuts dévront etre redirigé vers une page en front
+
+08 - admin/gestion_article.php 
+    gestion catégorie : création, suppression, "modification" 
+    gestion mots clés : création, suppression, "modification" 
+    articles : création, suppression, "modification" 
+        une image principale
+        possibilité de mettre une galerie image
+
+09 - index.php 
+    on affiche les articles du plus récent vers le plus ancien
+    mise en place de filtre : catégorie, mots clés
+    possibilité de faire la pagination (on affiche 10 articles)
+    sur l'article un lien permettant d'aller vers la fiche_article.php avec le détail complet de l'article.
+        On peut rajouter un commentaire et une note depuis fiche_article.php et on les affiche dans la page.
+
+10 - admin/gestion_utilisateur.php 
+    création, suppression, possibilité de passer un utilisateur en statut admin, "modification" 
+11 - admin/gestion_commentaire.php
+    suppression, "modification", "validation du commentaire" 
+    note
+12 - admin/statistique.php 
+    nombre d'article, nombre de commentaire, nombre d'utilisateur, les articles les plus commentés, les articles les mieux notés ...
+
+13 - mettre une bio au profil utilisateur
+
+14 - Mettre une rôle 'créateur' qui permet a un utilisateur valider par l'admin, de créer des articles
+
+15 - Changer gestion des articles : voir les articles créer par les utilisateur en attente de validation
