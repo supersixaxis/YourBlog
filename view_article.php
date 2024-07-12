@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user'])) {
                 'content' => $comment_content,
                 'rating' => $rating,
                 'date' => date('Y-m-d H:i:s'),
-                'article_id' => $article_index
+                'status' => 'en attente'
             ];
 
             if (!isset($article['comments'])) {
@@ -62,7 +62,7 @@ function calculate_average_rating($comments) {
     $total_rating = 0;
     $rating_count = 0;
     foreach ($comments as $comment) {
-        if (isset($comment['rating'])) {
+        if (isset($comment['rating']) && $comment['status'] === 'valide') {
             $total_rating += $comment['rating'];
             $rating_count++;
         }
@@ -86,8 +86,7 @@ function calculate_average_rating($comments) {
         <p><?php echo htmlspecialchars($article['content']); ?></p>
         <p><strong>Catégorie:</strong> <?php echo htmlspecialchars($article['category']); ?></p>
         <p><strong>Mots Clés:</strong> <?php echo implode(', ', $article['keywords']); ?></p>
-        <p><strong>Auteur:</strong> <a href="profil_user.php?pseudo=<?php echo htmlspecialchars($article['author']); ?>"><?php echo htmlspecialchars($article['author']); ?></a><p>
-
+        <p><strong>Auteur:</strong> <a href="profil_user.php?pseudo=<?php echo htmlspecialchars($article['author']); ?>"><?php echo htmlspecialchars($article['author']); ?></a></p>
 
         <?php
         $average_rating = calculate_average_rating($article['comments'] ?? []);
@@ -119,30 +118,32 @@ function calculate_average_rating($comments) {
             <p><a href="connexion.php">Connectez-vous</a> pour ajouter un commentaire.</p>
         <?php endif; ?>
 
-        <!-- Afficher les commentaires -->
+        <!-- Afficher les commentaires approuvés -->
         <?php if (!empty($article['comments'])): ?>
             <h3>Commentaires</h3>
             <ul class="list-unstyled">
                 <?php foreach ($article['comments'] as $index => $comment): ?>
-                    <li class="media mb-3">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">
-                                <a href="profil_user.php?pseudo=<?php echo htmlspecialchars($comment['pseudo']); ?>">
-                                    <?php echo htmlspecialchars($comment['pseudo']); ?>
-                                </a>
-                            </h5>
-                            <?php echo htmlspecialchars($comment['content']); ?>
-                            <p><small class="text-muted">Note: <?php echo $comment['rating']; ?>/5</small></p>
-                            <p><small class="text-muted">Posté le: <?php echo $comment['date']; ?></small></p>
+                    <?php if ($comment['status'] === 'valide'): ?>
+                        <li class="media mb-3">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">
+                                    <a href="profil_user.php?pseudo=<?php echo htmlspecialchars($comment['pseudo']); ?>">
+                                        <?php echo htmlspecialchars($comment['pseudo']); ?>
+                                    </a>
+                                </h5>
+                                <?php echo htmlspecialchars($comment['content']); ?>
+                                <p><small class="text-muted">Note: <?php echo $comment['rating']; ?>/5</small></p>
+                                <p><small class="text-muted">Posté le: <?php echo $comment['date']; ?></small></p>
 
-                            <?php if (isset($_SESSION['user']['status']) && $_SESSION['user']['status'] === 'admin'): ?>
-                                <form action="view_article.php?id=<?php echo $article_index; ?>" method="post" style="display:inline;">
-                                    <input type="hidden" name="delete_comment" value="<?php echo $index; ?>">
-                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                </form>
-                            <?php endif; ?>
-                        </div>
-                    </li>
+                                <?php if (isset($_SESSION['user']['status']) && $_SESSION['user']['status'] === 'admin'): ?>
+                                    <form action="view_article.php?id=<?php echo $article_index; ?>" method="post" style="display:inline;">
+                                        <input type="hidden" name="delete_comment" value="<?php echo $index; ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>

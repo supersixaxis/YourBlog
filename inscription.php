@@ -139,7 +139,7 @@ if (isset($_POST['pseudo'], $_POST['email'], $_POST['password'], $_POST['confirm
                     </div>
                     <button type="submit" class="btn btn-primary">S'inscrire</button>
                 </form>
-                <a href="http://localhost/phpcloudcampus/projet/connexion.php" class="btn btn-link mt-3">Vous avez déjà un compte ? Connectez-vous ici.</a>
+                <a href="http://localhost/YourBlog/connexion.php" class="btn btn-link mt-3">Vous avez déjà un compte ? Connectez-vous ici.</a>
             </div>
         </div>
     </div>

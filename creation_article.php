@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur ou créateur
 if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['status'], ['admin', 'createur'])) {
-    header("Location: http://localhost/phpcloudcampus/projet/connexion.php");
+    header("Location: http://localhost/YourBlog/connexion.php");
     exit;
 }
 
