@@ -25,7 +25,7 @@ if (isset($_POST['identifier']) && isset($_POST['password'])) {
     }
 
     if ($user_found) {
-        header("Location: /profil.php");
+        header("Location: /profil");
         exit;
     } else {
         $error_message = "Identifiant ou mot de passe incorrect.";
@@ -49,7 +49,7 @@ if (isset($_POST['identifier']) && isset($_POST['password'])) {
                 <?php if (!empty($error_message)): ?>
                     <div class="alert alert-danger mt-3"><?php echo $error_message; ?></div>
                 <?php endif; ?>
-                <form action="connexion.php" method="post" class="mt-3">
+                <form action="connexion" method="post" class="mt-3">
                     <div class="form-group">
                         <label for="identifier">Pseudo ou Email:</label>
                         <input type="text" class="form-control" id="identifier" name="identifier" required>
@@ -60,7 +60,7 @@ if (isset($_POST['identifier']) && isset($_POST['password'])) {
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
-                <a href="inscription.php" class="btn btn-link mt-3">Vous n'avez pas de compte ? Inscrivez-vous ici</a>
+                <a href="inscription" class="btn btn-link mt-3">Vous n'avez pas de compte ? Inscrivez-vous ici</a>
             </div>
         </div>
     </div>

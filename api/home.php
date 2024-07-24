@@ -115,7 +115,7 @@ function calculate_average_rating($comments) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <?php include('header'); ?>
     <div class="container">
         <h1 class="mt-5">Accueil</h1>
 
@@ -158,11 +158,11 @@ function calculate_average_rating($comments) {
                                 <?php endif; ?>
 
                                 <!-- Lien pour consulter l'article -->
-                                <a href="view_article.php?id=<?php echo $index; ?>" class="btn btn-primary">Consulter</a>
+                                <a href="view_article?id=<?php echo $index; ?>" class="btn btn-primary">Consulter</a>
                                 
                                 <?php if ($is_admin): ?>
                                     <!-- Formulaire de suppression -->
-                                    <form action="home.php" method="post" style="display: inline;">
+                                    <form action="home" method="post" style="display: inline;">
                                         <input type="hidden" name="article_index" value="<?php echo $index; ?>">
                                         <button type="submit" name="delete_article" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>
@@ -181,7 +181,7 @@ function calculate_average_rating($comments) {
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="home.php" method="post" enctype="multipart/form-data">
+                                                    <form action="home" method="post" enctype="multipart/form-data">
                                                         <input type="hidden" name="article_index" value="<?php echo $index; ?>">
                                                         <div class="form-group">
                                                             <label for="article_title<?php echo $index; ?>">Titre de l'article</label>

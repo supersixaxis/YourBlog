@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    header("Location: /connexion.php");
+    header("Location: /connexion");
     exit;
 }
 
@@ -138,7 +138,7 @@ if ($user['status'] === 'createur' || $user['status'] === 'admin') {
                                     <li class="list-group-item">
                                         <p><strong>Commentaire:</strong> <?php echo htmlspecialchars($comment['content']); ?></p>
                                         <p><strong>Note:</strong> <?php echo htmlspecialchars($comment['rating']); ?>/5</p>
-                                        <small class="text-muted">Article: <a href="view_article.php?id=<?php echo $comment['article_index']; ?>"><?php echo htmlspecialchars($comment['article_title']); ?></a></small>
+                                        <small class="text-muted">Article: <a href="view_article?id=<?php echo $comment['article_index']; ?>"><?php echo htmlspecialchars($comment['article_title']); ?></a></small>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>

@@ -104,7 +104,7 @@ if (isset($_POST['pseudo'], $_POST['email'], $_POST['password'], $_POST['confirm
                 <?php if (!empty($success_message)): ?>
                     <div class="alert alert-success"><?php echo $success_message; ?></div>
                 <?php endif; ?>
-                <form action="inscription.php" method="post" enctype="multipart/form-data" class="mt-3">
+                <form action="inscription" method="post" enctype="multipart/form-data" class="mt-3">
                     <div class="form-group">
                         <label for="pseudo">Pseudo :</label>
                         <input type="text" class="form-control" id="pseudo" name="pseudo" required>
@@ -139,7 +139,7 @@ if (isset($_POST['pseudo'], $_POST['email'], $_POST['password'], $_POST['confirm
                     </div>
                     <button type="submit" class="btn btn-primary">S'inscrire</button>
                 </form>
-                <a href="/connexion.php" class="btn btn-link mt-3">Vous avez déjà un compte ? Connectez-vous ici.</a>
+                <a href="/connexion" class="btn btn-link mt-3">Vous avez déjà un compte ? Connectez-vous ici.</a>
             </div>
         </div>
     </div>

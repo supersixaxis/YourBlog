@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur
 if (!isset($_SESSION['user']) || $_SESSION['user']['status'] !== 'admin') {
-    header("Location: /api/connexion.php");
+    header("Location: /api/connexion");
     exit;
 }
 
@@ -22,7 +22,7 @@ if (isset($_POST['validate_article'])) {
     if (isset($articles[$article_index])) {
         $articles[$article_index]['status'] = 'valide';
         file_put_contents($articles_file, json_encode($articles));
-        header("Location: gestion_article.php");
+        header("Location: gestion_article");
         exit;
     }
 }
@@ -43,7 +43,7 @@ if (isset($_POST['cancel_article'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include('../header.php'); ?>
+    <?php include('../header'); ?>
     <div class="container">
         <h1 class="mt-5">Articles en attente</h1>
         <div class="mt-5">
@@ -58,7 +58,7 @@ if (isset($_POST['cancel_article'])) {
                                 <p>Catégorie: <?php echo htmlspecialchars($article['category']); ?></p>
                                 <p>Auteur: <?php echo htmlspecialchars($article['author']); ?></p>
                                 <p>Statut: <?php echo htmlspecialchars($article['status']); ?></p>
-                                <form method="post" action="gestion_article.php" style="display: inline-block;">
+                                <form method="post" action="gestion_article" style="display: inline-block;">
                                     <input type="hidden" name="article_index" value="<?php echo $index; ?>">
                                     <button type="submit" name="validate_article" class="btn btn-success">Valider</button>
                                     <button type="submit" name="cancel_article" class="btn btn-danger">Refuser</button>

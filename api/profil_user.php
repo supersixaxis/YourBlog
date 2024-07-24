@@ -6,7 +6,7 @@ $articles_file = 'admin/articles.txt';
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
-    header("Location: /connexion.php");
+    header("Location: /connexion");
     exit;
 }
 
@@ -112,7 +112,7 @@ if ($user_found['status'] === 'createur' || $user_found['status'] === 'admin') {
                         <p class="card-text"><strong>Status:</strong> <?php echo htmlspecialchars($user_found['status']); ?></p>
                         <div class="card mt-3">
                             <div class="card-body">
-                                <form action="profil_user.php" method="post">
+                                <form action="profil_user" method="post">
                                     <div class="form-group">
                                         <label for="biographie"><strong>Modifier la biographie:</strong></label>
                                         <textarea class="form-control" id="biographie" name="biographie" rows="4"><?php echo htmlspecialchars($user_found['biographie'] ?? ''); ?></textarea>
@@ -156,7 +156,7 @@ if ($user_found['status'] === 'createur' || $user_found['status'] === 'admin') {
                                     <li class="list-group-item">
                                         <p><strong>Commentaire:</strong> <?php echo htmlspecialchars($comment['content']); ?></p>
                                         <p><strong>Note:</strong> <?php echo htmlspecialchars($comment['rating']); ?>/5</p>
-                                        <small class="text-muted">Article: <a href="view_article.php?id=<?php echo $comment['article_index']; ?>"><?php echo htmlspecialchars($comment['article_title']); ?></a></small>
+                                        <small class="text-muted">Article: <a href="view_article?id=<?php echo $comment['article_index']; ?>"><?php echo htmlspecialchars($comment['article_title']); ?></a></small>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>

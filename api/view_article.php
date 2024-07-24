@@ -86,7 +86,7 @@ function calculate_average_rating($comments) {
         <p><?php echo htmlspecialchars($article['content']); ?></p>
         <p><strong>Catégorie:</strong> <?php echo htmlspecialchars($article['category']); ?></p>
         <p><strong>Mots Clés:</strong> <?php echo implode(', ', $article['keywords']); ?></p>
-        <p><strong>Auteur:</strong> <a href="profil_user.php?pseudo=<?php echo htmlspecialchars($article['author']); ?>"><?php echo htmlspecialchars($article['author']); ?></a></p>
+        <p><strong>Auteur:</strong> <a href="profil_user?pseudo=<?php echo htmlspecialchars($article['author']); ?>"><?php echo htmlspecialchars($article['author']); ?></a></p>
 
         <?php
         $average_rating = calculate_average_rating($article['comments'] ?? []);
@@ -97,7 +97,7 @@ function calculate_average_rating($comments) {
         <!-- Formulaire pour ajouter un commentaire -->
         <?php if (isset($_SESSION['user'])): ?>
             <h3>Ajouter un commentaire</h3>
-            <form action="view_article.php?id=<?php echo $article_index; ?>" method="post">
+            <form action="view_article?id=<?php echo $article_index; ?>" method="post">
                 <div class="form-group">
                     <label for="comment_content">Commentaire:</label>
                     <textarea class="form-control" id="comment_content" name="comment_content" rows="3" required></textarea>
@@ -115,7 +115,7 @@ function calculate_average_rating($comments) {
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
         <?php else: ?>
-            <p><a href="connexion.php">Connectez-vous</a> pour ajouter un commentaire.</p>
+            <p><a href="connexion">Connectez-vous</a> pour ajouter un commentaire.</p>
         <?php endif; ?>
 
         <!-- Afficher les commentaires approuvés -->
@@ -127,7 +127,7 @@ function calculate_average_rating($comments) {
                         <li class="media mb-3">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">
-                                    <a href="profil_user.php?pseudo=<?php echo htmlspecialchars($comment['pseudo']); ?>">
+                                    <a href="profil_user?pseudo=<?php echo htmlspecialchars($comment['pseudo']); ?>">
                                         <?php echo htmlspecialchars($comment['pseudo']); ?>
                                     </a>
                                 </h5>
@@ -136,7 +136,7 @@ function calculate_average_rating($comments) {
                                 <p><small class="text-muted">Posté le: <?php echo $comment['date']; ?></small></p>
 
                                 <?php if (isset($_SESSION['user']['status']) && $_SESSION['user']['status'] === 'admin'): ?>
-                                    <form action="view_article.php?id=<?php echo $article_index; ?>" method="post" style="display:inline;">
+                                    <form action="view_article?id=<?php echo $article_index; ?>" method="post" style="display:inline;">
                                         <input type="hidden" name="delete_comment" value="<?php echo $index; ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>

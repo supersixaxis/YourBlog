@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur
 if (!isset($_SESSION['user']) || $_SESSION['user']['status'] !== 'admin') {
-    header("Location: /api/connexion.php");
+    header("Location: /api/connexion");
     exit;
 }
 
@@ -22,7 +22,7 @@ if (isset($_POST['validate_comment'])) {
     if (isset($articles[$article_index]['comments'][$comment_index])) {
         $articles[$article_index]['comments'][$comment_index]['status'] = 'valide';
         file_put_contents($articles_file, json_encode($articles));
-        header("Location: gestion_commentaires.php");
+        header("Location: gestion_commentaires");
         exit;
     }
 }
@@ -34,7 +34,7 @@ if (isset($_POST['delete_comment'])) {
     if (isset($articles[$article_index]['comments'][$comment_index])) {
         array_splice($articles[$article_index]['comments'], $comment_index, 1);
         file_put_contents($articles_file, json_encode($articles));
-        header("Location: gestion_commentaires.php");
+        header("Location: gestion_commentaires");
         exit;
     }
 }
@@ -49,7 +49,7 @@ if (isset($_POST['delete_comment'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include('../header.php'); ?>
+    <?php include('../header'); ?>
     <div class="container">
         <h1 class="mt-5">Commentaires en attente</h1>
         <div class="mt-5">
@@ -58,23 +58,23 @@ if (isset($_POST['delete_comment'])) {
                     <ul class="list-unstyled">
                         <?php foreach ($article['comments'] as $comment_index => $comment): ?>
                             <?php if ($comment['status'] === 'en attente'): ?>
-                                <h3><a href="../view_article.php?id=<?php echo $article_index; ?>"><?php echo htmlspecialchars($article['title']); ?></a></h3>
+                                <h3><a href="../view_article?id=<?php echo $article_index; ?>"><?php echo htmlspecialchars($article['title']); ?></a></h3>
                                 <li class="media mb-3">
                                     <div class="media-body">
                                         <h5 class="mt-0 mb-1">
-                                            <a href="../profil_user.php?pseudo=<?php echo htmlspecialchars($comment['pseudo']); ?>">
+                                            <a href="../profil_user?pseudo=<?php echo htmlspecialchars($comment['pseudo']); ?>">
                                                 <?php echo htmlspecialchars($comment['pseudo']); ?>
                                             </a>
                                         </h5>
                                         <?php echo htmlspecialchars($comment['content']); ?>
                                         <p><small class="text-muted">Note: <?php echo $comment['rating']; ?>/5</small></p>
                                         <p><small class="text-muted">Posté le: <?php echo $comment['date']; ?></small></p>
-                                        <form action="gestion_commentaires.php" method="post" style="display:inline;">
+                                        <form action="gestion_commentaires" method="post" style="display:inline;">
                                             <input type="hidden" name="article_index" value="<?php echo $article_index; ?>">
                                             <input type="hidden" name="comment_index" value="<?php echo $comment_index; ?>">
                                             <button type="submit" name="validate_comment" class="btn btn-success btn-sm">Valider</button>
                                         </form>
-                                        <form action="gestion_commentaires.php" method="post" style="display:inline;">
+                                        <form action="gestion_commentaires" method="post" style="display:inline;">
                                             <input type="hidden" name="article_index" value="<?php echo $article_index; ?>">
                                             <input type="hidden" name="delete_comment" value="<?php echo $comment_index; ?>">
                                             <button type="submit" name="delete_comment" class="btn btn-danger btn-sm">Supprimer</button>

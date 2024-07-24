@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur ou créateur
 if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['status'], ['admin', 'createur'])) {
-    header("Location: /connexion.php");
+    header("Location: /connexion");
     exit;
 }
 
@@ -112,13 +112,13 @@ if (isset($_POST['create_article'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <?php include('header'); ?>
     <div class="container">
         <h1 class="mt-5">Gestion des Articles</h1>
         
         <!-- Gestion des articles -->
         <div class="mt-5">
-            <form action="creation_article.php" method="post" enctype="multipart/form-data">
+            <form action="creation_article" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="article_title">Titre de l'article</label>
                     <input type="text" class="form-control" id="article_title" name="article_title" placeholder="Titre de l'article" required>

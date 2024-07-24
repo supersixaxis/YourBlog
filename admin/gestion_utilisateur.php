@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur
 if (!isset($_SESSION['user']) || $_SESSION['user']['status'] !== 'admin') {
-    header("Location: /api/connexion.php");
+    header("Location: /api/connexion");
     exit;
 }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_index'], $_POST[
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include('../header.php'); ?>
+    <?php include('../header'); ?>
     <div class="container">
         <h1 class="mt-5">Gestion des utilisateurs</h1>
         
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_index'], $_POST[
                                 <td><?php echo htmlspecialchars($user['pseudo']); ?></td>
                                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                                 <td>
-                                    <form action="gestion_utilisateur.php" method="post">
+                                    <form action="gestion_utilisateur" method="post">
                                         <input type="hidden" name="user_index" value="<?php echo htmlspecialchars($index); ?>">
                                         <select name="new_status" onchange="this.form.submit()" class="form-control">
                                             <option value="user" <?php echo ($user['status'] === 'user') ? 'selected' : ''; ?>>Utilisateur</option>
