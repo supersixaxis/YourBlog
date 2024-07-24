@@ -5,17 +5,36 @@
   },
   "routes": [
     {
-      "src": "/api/home.php",
-      "headers": { "Location": "/home" },
-      "status": 307
-    },
-    {
       "src": "/",
       "dest": "/api/connexion.php"
     },
     {
+      "src": "/connexion",
+      "dest": "/api/connexion.php"
+    },
+    {
+      "src": "/inscription",
+      "dest": "/api/inscription.php"
+    },
+    {
       "src": "/home",
       "dest": "/api/home.php"
+    },
+    {
+      "src": "/creation_article",
+      "dest": "/api/creation_article.php"
+    },
+    {
+      "src": "/profil_user",
+      "dest": "/api/profil_user.php"
+    },
+    {
+      "src": "/profil",
+      "dest": "/api/profil.php"
+    },
+    {
+      "src": "/view_article",
+      "dest": "/api/view_article.php"
     },
     {
       "src": "/public/(.*)",
