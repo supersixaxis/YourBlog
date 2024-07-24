@@ -45,7 +45,7 @@ if (isset($_POST['logout'])) {
                         Gestion
                     </a>
                     <div class="dropdown-menu" aria-labelledby="gestionDropdown">
-                        <a class="dropdown-item" href="admin/gestion_article.php">Gestion des articles</a>
+                        <a class="dropdown-item" href="/admin/gestion_article.php">Gestion des articles</a>
                         <a class="dropdown-item" href="/admin/gestion_commentaires.php">Gestion des commentaires</a>
                         <a class="dropdown-item" href="/admin/gestion_utilisateur.php">Gestion des utilisateurs</a>
                     </div>

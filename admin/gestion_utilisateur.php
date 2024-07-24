@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur
 if (!isset($_SESSION['user']) || $_SESSION['user']['status'] !== 'admin') {
-    header("Location: /connexion.php");
+    header("Location: /api/connexion.php");
     exit;
 }
 
