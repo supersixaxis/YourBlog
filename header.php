@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
     $is_createur = ($user['status'] === 'createur');
 } else {
     // Redirection si l'utilisateur n'est pas connecté
-    header("Location: http://localhost/YourBlog/connexion.php");
+    header("Location: /connexion.php");
     exit;
 }
 
@@ -16,7 +16,7 @@ if (isset($_SESSION['user'])) {
 if (isset($_POST['logout'])) {
     session_unset();    
     session_destroy(); 
-    header("Location: http://localhost/YourBlog/connexion.php");
+    header("Location: /connexion.php");
     exit;
 }
 ?>
@@ -29,14 +29,14 @@ if (isset($_POST['logout'])) {
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost/YourBlog/home.php">Home</a>
+                <a class="nav-link" href="/home.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost/YourBlog/profil.php">Profile</a>
+                <a class="nav-link" href="/profil.php">Profile</a>
             </li>
             <?php if ($is_admin || $is_createur): ?>
                 <li class="nav-item">
-                <a class="nav-link" href="http://localhost/YourBlog/creation_article.php">Publier un article</a>
+                <a class="nav-link" href="/creation_article.php">Publier un article</a>
             </li>
             <?php endif; ?>
             <?php if ($is_admin): ?>
@@ -45,9 +45,9 @@ if (isset($_POST['logout'])) {
                         Gestion
                     </a>
                     <div class="dropdown-menu" aria-labelledby="gestionDropdown">
-                        <a class="dropdown-item" href="http://localhost/YourBlog/admin/gestion_article.php">Gestion des articles</a>
-                        <a class="dropdown-item" href="http://localhost/YourBlog/admin/gestion_commentaires.php">Gestion des commentaires</a>
-                        <a class="dropdown-item" href="http://localhost/YourBlog/admin/gestion_utilisateur.php">Gestion des utilisateurs</a>
+                        <a class="dropdown-item" href="admin/gestion_article.php">Gestion des articles</a>
+                        <a class="dropdown-item" href="/admin/gestion_commentaires.php">Gestion des commentaires</a>
+                        <a class="dropdown-item" href="/admin/gestion_utilisateur.php">Gestion des utilisateurs</a>
                     </div>
                 </li>
             <?php endif; ?>

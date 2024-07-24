@@ -6,7 +6,7 @@ $articles_file = 'admin/articles.txt';
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
-    header("Location: http://localhost/YourBlog/connexion.php");
+    header("Location: /connexion.php");
     exit;
 }
 

@@ -25,7 +25,7 @@ if (isset($_POST['identifier']) && isset($_POST['password'])) {
     }
 
     if ($user_found) {
-        header("Location: http://localhost/YourBlog/profil.php");
+        header("Location: /profil.php");
         exit;
     } else {
         $error_message = "Identifiant ou mot de passe incorrect.";

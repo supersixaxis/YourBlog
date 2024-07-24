@@ -3,7 +3,7 @@ session_start();
 
 // Vérifier si l'utilisateur est administrateur
 if (!isset($_SESSION['user']) || $_SESSION['user']['status'] !== 'admin') {
-    header("Location: http://localhost/YourBlog/connexion.php");
+    header("Location: /connexion.php");
     exit;
 }
 
