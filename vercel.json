@@ -1,18 +1,25 @@
 {
-    "version": 2,
-    "routes": [
-      {
-        "src": "/",
-        "dest": "/api/connexion.php"
-      },
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/$1"
-      },
-      {
-        "src": "/public/(.*)",
-        "dest": "/public/$1"
-      }
-    ]
-  }
-  
+  "version": 2,
+  "functions": {
+    "api/*.php": { "runtime": "vercel-php@0.5.2" }
+  },
+  "routes": [
+    {
+      "src": "/api/home.php",
+      "headers": { "Location": "/home" },
+      "status": 307
+    },
+    {
+      "src": "/",
+      "dest": "/api/connexion.php"
+    },
+    {
+      "src": "/home",
+      "dest": "/api/home.php"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
